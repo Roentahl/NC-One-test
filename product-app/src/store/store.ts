@@ -57,7 +57,6 @@ export const actions = {
         isFavorite: false
       }
 
-      // setGlobalState('currentProduct', {...product});
       setGlobalState('productList', [product]);
     } catch (error) {
       setGlobalState('error', error instanceof Error ? error.message : 'Не удалось загрузить товар');
