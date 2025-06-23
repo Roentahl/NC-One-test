@@ -12,9 +12,9 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" component="div">
+    <AppBar position="static" className="header">
+      <Toolbar className="toolbar">
+        <Typography variant="h6" component="div" className="title">
           {getPageTitle()}
         </Typography>
       </Toolbar>

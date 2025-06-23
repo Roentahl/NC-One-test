@@ -10,12 +10,14 @@ interface IProduct {
 
 interface IGlobalState {
   productList: IProduct[];
+  currentProduct?: IProduct | null;
   isLoading: boolean;
   error: string | null;
 }
 
 const { useGlobalState, getGlobalState, setGlobalState } = createGlobalState<IGlobalState>({
   productList: [],
+  currentProduct: null,
   isLoading: false,
   error: null,
 });
@@ -55,6 +57,7 @@ export const actions = {
         isFavorite: false
       }
 
+      // setGlobalState('currentProduct', {...product});
       setGlobalState('productList', [product]);
     } catch (error) {
       setGlobalState('error', error instanceof Error ? error.message : 'Не удалось загрузить товар');
@@ -72,6 +75,6 @@ export const actions = {
 
 export const useProducts = () => useGlobalState('productList')[0];
 export const useFavoriteProducts = () => useGlobalState('productList')[0].filter(p => p.isFavorite);
-export const useProduct = (id: number) => useGlobalState('productList')[0].find(p => p.id === id);
+export const useProduct = (id: number) => useGlobalState('productList')[0].find(p => p.id === id);;
 export const useProductsLoading = () => useGlobalState('isLoading')[0];
 export const useProductsError = () => useGlobalState('error')[0];
